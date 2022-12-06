@@ -4,10 +4,11 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('./config/app');
 var debug = require('debug')('214-assign4:server');
 var http = require('http');
 
+let dbConfig = require('./config/database')
 /**
  * Get port from environment and store in Express.
  */
@@ -19,6 +20,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
+let db = dbConfig();
 var server = http.createServer(app);
 
 /**
@@ -88,3 +90,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+console.log(`Server is listening in port ${port}`)
