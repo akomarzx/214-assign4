@@ -5,34 +5,40 @@
                 <h1 class="text-center">Products List</h1>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-md-10">
+                <div class="col-md">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stocks</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            <% for( let i=0; i < products.length; i++ ) { %>
+                                <tr>
+                                    <td>
+                                        <%- i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%- products[i].PRODUCTNAME %>
+                                    </td>
+                                    <td>
+                                        <%- products[i].DESCRIPTION %>
+                                    </td>
+                                    <td>
+                                        <%- products[i].PRICE.toFixed(2) %>
+                                    </td>
+                                    <td>
+                                        <%- products[i].STOCK %>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <% } %>
                         </tbody>
                     </table>
                 </div>

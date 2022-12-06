@@ -13,11 +13,12 @@ let flash = require('connect-flash')
 var app = express();
 let passport = require('passport')
 let userModel = require('../models/user.model');
-
+let methodOverride = require('method-override')
 // Session Setup
 const store = MongoStore.create({
   mongoUrl: 'mongodb+srv://student1:redvelvet@assignment2-cluster.phqnw7l.mongodb.net/Assignment2?retryWrites=true&w=majority',
 })
+app.use(methodOverride('_method'));
 
 app.use(session({
   resave: false,
@@ -57,7 +58,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
