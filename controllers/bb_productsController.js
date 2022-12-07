@@ -67,7 +67,6 @@ module.exports.editBBProductPage = async (req, res, next) => {
 module.exports.editBBProduct = async (req, res, next) => {
     let connection;
     let result;
-    console.log(req.body);
     try {
         connection = await oracledb.getConnection({
             user: "COMP214_F22_er_19",
@@ -77,7 +76,11 @@ module.exports.editBBProduct = async (req, res, next) => {
         let p_id = parseInt(req.body.productId);
         let p_desc = req.body.newDescription
         result = await connection.execute(
-            `EXEC SP_EDIT_PROD_DESC(2 ,"Hello world")`,
+            `BEGIN SP_EDIT_PROD_DESC(:p_id ,:p_desc); END;`,
+            {
+                p_id: p_id,
+                p_desc: p_desc
+            }
         );
     } catch (err) {
         console.log(err)
