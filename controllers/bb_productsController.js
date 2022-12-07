@@ -14,7 +14,7 @@ module.exports.getAllBBProducts = async (req, res, next) => {
         });
 
         result = await connection.execute(
-            `SELECT * FROM BB_PRODUCT`
+            `SELECT * FROM BB_PRODUCT ORDER BY IDPRODUCT`
         );
     } catch (err) {
         console.log(err)
@@ -96,5 +96,46 @@ module.exports.editBBProduct = async (req, res, next) => {
         }
     }
     req.flash('success', 'Product Updated Succesfully')
+    return res.status(200).redirect('/')
+}
+
+module.exports.getBBProductCreatePage = async (req, res, next) => {
+    res.locals.title = 'Add new Product';
+    res.status(200).render('addBBProduct');
+}
+
+module.exports.createBBProduct = async (req, res, next) => {
+    let connection;
+    let result;
+    try {
+        connection = await oracledb.getConnection({
+            user: "COMP214_F22_er_19",
+            password: "admingroup4",
+            connectString: "199.212.26.208/SQLD"
+        });
+        result = await connection.execute(
+            `BEGIN PROD_ADD_SP(:p_name, :p_desc , :p_img, :p_price, :p_status); END;`,
+            {
+                p_name: req.body.productName,
+                p_desc: req.body.description,
+                p_img: req.body.imageName,
+                p_price: parseFloat(req.body.price),
+                p_status: parseInt(req.body.status)
+            }
+        );
+    } catch (err) {
+        console.log(err)
+        req.flash('error', 'Something went wrong')
+        return res.redirect('/');
+    } finally {
+        if (connection) {
+            try {
+                await connection.close();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    }
+    req.flash('success', 'Product Created Succesfully')
     return res.status(200).redirect('/')
 }
