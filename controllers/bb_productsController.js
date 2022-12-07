@@ -5,7 +5,15 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 module.exports.getAllBBProducts = async (req, res, next) => {
     let connection;
     let result;
-
+    let query = `SELECT * FROM BB_PRODUCT ORDER BY IDPRODUCT`;
+    let binds = [];
+    if (req.query.search) {
+        query = `SELECT * FROM BB_PRODUCT WHERE PRODUCTNAME LIKE :search ORDER BY IDPRODUCT`;
+        binds.push(req.query.search);
+        console.log(binds)
+    } else {
+        query = `SELECT * FROM BB_PRODUCT ORDER BY IDPRODUCT`
+    }
     try {
         connection = await oracledb.getConnection({
             user: "COMP214_F22_er_19",
@@ -13,12 +21,10 @@ module.exports.getAllBBProducts = async (req, res, next) => {
             connectString: "199.212.26.208/SQLD"
         });
 
-        result = await connection.execute(
-            `SELECT * FROM BB_PRODUCT ORDER BY IDPRODUCT`
-        );
+        result = await connection.execute(query, binds);
     } catch (err) {
-        console.log(err)
-        next(err)
+        req.flash('error', err.message);
+        res.redirect('/');
     } finally {
         if (connection) {
             try {
