@@ -1,55 +1,21 @@
 <%- layout('./layouts/mainLayout.ejs') %>
-
     <div class="row h-100 d-flex justify-content-center mt-2">
         <div class="col-md px-0">
-            <div class="row class ms-2">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <form action="/">
-                            <div class="form-group my-2">
-                                <label for="searchBar" class="form-label">Search For Prodcut</label>
-                                <input type="text" name="search" id="searchBar" placeholder="Enter Keyword"
-                                    class="form-control" required>
-                            </div>
-                            <div class="my-2">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <div class="row ms-2">
-                <h1>Create New Product</h1>
+                <h1>Calculate Tax</h1>
             </div>
             <div class="row ms-2">
                 <div class="col-md-4 ms-2">
-                    <form action="/bb-products" method="post">
+                    <form action="/bb-tax/calculate-tax" method="post">
                         <div class="form-group my-3">
-                            <label for="productName" class="form-label">Product Name</label>
-                            <input type="text" name="productName" id="productName" class="form-control"
-                                placeholder="Product Name" required>
+                            <label for="state" class="form-label">Customer State</label>
+                            <input type="text" name="state" id="state" class="form-control"
+                                placeholder="Enter Customer State For Example VA , MT" required>
                         </div>
                         <div class="form-group my-3">
-                            <label for="description" class="form-label">Add Description</label>
-                            <input type="text" name="description" id="description" placeholder="Add Description"
-                                class="form-control" required>
-                        </div>
-                        <div class="form-group my-3">
-                            <label for="imageName" class="form-label">Image Name</label>
-                            <input type="text" name="imageName" id="imageName" placeholder="Name of image file"
-                                class="form-control" required>
-                        </div>
-                        <div class="form-group my-3">
-                            <label for="price" class="form-label">Price</label>
-                            <input type="number" name="price" id="price" placeholder="Enter Price" class="form-control"
-                                step="0.01" min="0" required>
-                        </div>
-                        <div class="form-group my-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select name="status" id="status" class="form-select">
-                                <option value="0">Inactive</option>
-                                <option value="1">Active</option>
-                            </select>
+                            <label for="subtotal" class="form-label">Basket Subtotal</label>
+                            <input type="number" step="0.1" name="subtotal" id="subtotal"
+                                placeholder="Enter Customer's subtotal" class="form-control" required>
                         </div>
                         <div class="my-3">
                             <button type="submit" class="btn btn-primary">Submit</button>
