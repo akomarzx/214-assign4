@@ -1,0 +1,50 @@
+<%- layout('./layouts/mainLayout.ejs') %>
+
+    <div class="row h-100 d-flex justify-content-center mt-2">
+        <div class="col-md px-0">
+            <div class="row ms-2">
+                <h1>Create Basket Status</h1>
+            </div>
+            <div class="row ms-2">
+                <div class="col-md-4 ms-2">
+                    <form action="/baskets-status" method="post">
+                        <div class="form-group my-3">
+                            <label for="basketId" class="form-label">Basket Id</label>
+                            <select name="basketId" id="basketId" required class="form-select">
+                                <% for( let i=0; i < baskets.length; i++ ) { %>
+                                    <option value=<%- baskets[i].IDBASKET %> ><%- baskets[i].IDBASKET %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="idStage" class="form-label">Id Stage</label>
+                            <input type="number" name="idStage" id="idStage" placeholder="Enter Stage Id"
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="dtshipped" class="form-label">Date Shipped</label>
+                            <input type="date" name="dtshipped" id="dtshipped" placeholder="Enter Stage Id"
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="shipper" class="form-label">Shipper Name</label>
+                            <input type="text" name="shipper" id="shipper" placeholder="Shipper Name"
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="trackNum" class="form-label">Tracking Number</label>
+                            <input type="trackNum" name="trackNum" id="trackNum" placeholder="Tracking #"
+                                class="form-control" step="0.01" min="0" required>
+                        </div>
+                        <div class="my-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="/">
+                                <button type="button" class="btn btn-warning">Cancel</button>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

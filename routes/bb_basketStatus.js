@@ -7,5 +7,5 @@ const bbBasketStatusController = require('../controllers/bb_basketStatusControll
 router.get('/', bbBasketStatusController.getBasketStatusPage)
 router.get('/create-status', bbBasketStatusController.createBasketStatusPage)
 
-
+router.post('/', bbBasketStatusController.createBasketStatus)
 module.exports = router;
