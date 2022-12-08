@@ -7,6 +7,7 @@ module.exports.getAllBBProducts = async (req, res, next) => {
     let result;
     let query = `SELECT * FROM BB_PRODUCT ORDER BY IDPRODUCT`;
     let binds = [];
+    let basketIDs = [];
     if (req.query.search) {
         query = `SELECT * FROM BB_PRODUCT WHERE PRODUCTNAME LIKE :search ORDER BY IDPRODUCT`;
         binds.push(req.query.search);
@@ -20,7 +21,7 @@ module.exports.getAllBBProducts = async (req, res, next) => {
             password: "admingroup4",
             connectString: "199.212.26.208/SQLD"
         });
-
+        basketIDs = await connection.execute(`SELECT IDBASKET FROM BB_BASKET`);
         result = await connection.execute(query, binds);
     } catch (err) {
         req.flash('error', err.message);
@@ -34,6 +35,7 @@ module.exports.getAllBBProducts = async (req, res, next) => {
             }
         }
     }
+    res.locals.idbaskets = basketIDs?.rows;
     res.locals.title = 'BB Products';
     res.locals.products = result.rows;
     res.status(200).render('bbProducts/index')

@@ -35,7 +35,28 @@
                                         <%- products[i].STOCK %>
                                     </td>
                                     <td>
+                                        <form action="/basket-items" method="post">
+                                            <label for="quantity">Quantity</label>
+                                            <select name="quantity" id="quantity">
+                                                <% for( let i=1; i < 11; i++ ) { %>
+                                                    <option value=<%- i %> > <%- i %>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+                                            <label for="idBasket" class="ms-1">Basket Id</label>
+                                            <select name="idbasket" id="idbasket">
+                                                <option selected></option>
+                                                <% for( let i=0 ; i < idbaskets.length; i++ ) { %>
 
+                                                    <option value=<%- idbaskets[i].IDBASKET %> > <%-
+                                                            idbaskets[i].IDBASKET %>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+                                            <input type="hidden" name="idproduct" value=<%- products[i].IDPRODUCT %> >
+                                            <input type="hidden" name="price" value=<%- products[i].PRICE %> >
+                                            <button class="btn btn-success">Add to cart</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <% } %>

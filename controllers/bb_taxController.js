@@ -43,6 +43,6 @@ module.exports.calculateTax = async (req, res, next) => {
         }
     }
     console.log(result);
-    req.flash('success', `The tax for this customer will be $${result.outBinds.p_result}`);
+    req.flash('success', `The tax for this customer will be $${result.outBinds.p_result.toFixed(2)}`);
     return res.status(200).redirect('/bb-tax/calculate-tax')
 }

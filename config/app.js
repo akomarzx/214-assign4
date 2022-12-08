@@ -4,9 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var bbBasketsRouter = require('../routes/bb_basketRoutes');
 var bbProductRouter = require('../routes/bb_products');
 var bbTaxRouter = require('../routes/bb_tax')
 var bbBasketStatusRouter = require('../routes/bb_basketStatus')
+var bbBasketItemRouter = require('../routes/bb_basketItemRoutes')
 var usersRouter = require('../routes/users');
 let ejsMate = require('ejs-mate')
 let session = require('express-session')
@@ -60,8 +62,11 @@ app.use((req, res, next) => {
 });
 
 app.use('/', bbProductRouter);
-app.use('/bb-tax', bbTaxRouter)
-app.use('/baskets-status', bbBasketStatusRouter)
+app.use('/bb-tax', bbTaxRouter);
+app.use('/baskets-status', bbBasketStatusRouter);
+app.use('/baskets', bbBasketsRouter);
+app.use('/basket-items', bbBasketItemRouter)
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

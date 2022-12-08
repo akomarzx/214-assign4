@@ -1,0 +1,71 @@
+<%- layout('./layouts/mainLayout.ejs') %>
+    <div class="row h-100 d-flex justify-content-center mt-2">
+        <div class="col-md px-0">
+            <div class="row ms-2">
+                <h1>View Basket</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-4 ms-3">
+                    <form action="/baskets" method="get">
+                        <div class="form-group mb-3">
+                            <label for="basketId" class="form-label">Basket Id</label>
+                            <select name="basketId" id="basketId" class="form-select">
+                                <option selected=<%- selectedBasket %> ><%- selectedBasket %>
+                                </option>
+                                <% for( let i=0; i < baskets.length; i++ ) { %>
+                                    <option value=<%- baskets[i].IDBASKET%>>
+                                        <%- baskets[i].IDBASKET %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                        <div class="my-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="/baskets">
+                                <button type="button" class="btn btn-warning">Cancel</button>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row ms-2 my-2">
+                <div class="col-md">
+                    <div class="row">
+                        <h2>Basket Contents</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Price($)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for( let i=0; i < basketItems.length; i++ ) { %>
+                                        <tr>
+                                            <td>
+                                                <%- i + 1 %>
+                                            </td>
+                                            <td>
+                                                <%- basketItems[i].PRODUCTNAME %>
+                                            </td>
+                                            <td>
+                                                <%- basketItems[i].QUANTITY %>
+                                            </td>
+                                            <td>
+                                                <%- basketItems[i].PRICE.toFixed(2) %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
