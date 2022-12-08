@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var bbProductRouter = require('../routes/bb_products');
 var bbTaxRouter = require('../routes/bb_tax')
+var bbBasketStatusRouter = require('../routes/bb_basketStatus')
 var usersRouter = require('../routes/users');
 let ejsMate = require('ejs-mate')
 let session = require('express-session')
@@ -60,6 +61,7 @@ app.use((req, res, next) => {
 
 app.use('/', bbProductRouter);
 app.use('/bb-tax', bbTaxRouter)
+app.use('/baskets-status', bbBasketStatusRouter)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

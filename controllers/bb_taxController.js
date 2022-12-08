@@ -4,7 +4,7 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT
 
 module.exports.getCalculateTaxPage = async (req, res, next) => {
     res.locals.title = 'Calculate Tax';
-    res.status(200).render('bbTaxCalculate');
+    res.status(200).render('bbTax/bbTaxCalculate');
 }
 
 module.exports.calculateTax = async (req, res, next) => {

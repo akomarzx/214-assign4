@@ -36,7 +36,7 @@ module.exports.getAllBBProducts = async (req, res, next) => {
     }
     res.locals.title = 'BB Products';
     res.locals.products = result.rows;
-    res.status(200).render('index')
+    res.status(200).render('bbProducts/index')
 }
 
 module.exports.editBBProductPage = async (req, res, next) => {
@@ -67,7 +67,7 @@ module.exports.editBBProductPage = async (req, res, next) => {
     }
     res.locals.title = 'Edit BB Product';
     res.locals.products = result.rows;
-    res.status(200).render('editBBProduct')
+    res.status(200).render('bbProducts/editBBProduct')
 }
 
 module.exports.editBBProduct = async (req, res, next) => {
@@ -107,7 +107,7 @@ module.exports.editBBProduct = async (req, res, next) => {
 
 module.exports.getBBProductCreatePage = async (req, res, next) => {
     res.locals.title = 'Add new Product';
-    res.status(200).render('addBBProduct');
+    res.status(200).render('bbProducts/addBBProduct');
 }
 
 module.exports.createBBProduct = async (req, res, next) => {

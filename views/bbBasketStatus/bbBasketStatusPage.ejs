@@ -1,0 +1,52 @@
+<%- layout('./layouts/mainLayout.ejs') %>
+    <div class="row h-100 d-flex justify-content-center mt-2">
+        <div class="col-md px-0">
+            <div class="row">
+                <h1 class="text-center">Baskets Status</h1>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Basket ID</th>
+                                <th scope="col">Stage</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Notes</th>
+                                <th scope="col">Shipper</th>
+                                <th scope="col">Tracking #</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for( let i=0; i < baskets.length; i++ ) { %>
+                                <tr>
+                                    <td>
+                                        <%- i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%- baskets[i].IDBASKET %>
+                                    </td>
+                                    <td>
+                                        <%- baskets[i].IDSTAGE %>
+                                    </td>
+                                    <td>
+                                        <%- baskets[i].DTSTAGE %>
+                                    </td>
+                                    <td>
+                                        <%- baskets[i].NOTES %>
+                                    </td>
+                                    <td>
+                                        <%- baskets[i].SHIPPER %>
+                                    </td>
+                                    <td>
+                                        <%- baskets[i].SHIPPINGNUM %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
